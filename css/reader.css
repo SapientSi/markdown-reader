@@ -1,0 +1,116 @@
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+* {
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+}
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  padding: 15px 40px 25px 40px;
+  margin: 0 auto;
+  max-width: 740px;
+  background-color: #181818;
+  min-height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.markdown-body {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #e8e8ea;
+  background-color: #181818;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+/* 中英文分别设置字体 */
+.markdown-body {
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
+}
+.markdown-body:lang(en), 
+.markdown-body *:lang(en) {
+  font-family: "Palatino Linotype", "Book Antiqua", "Cambria", "Georgia", "Times New Roman", serif;
+  font-weight: 500;
+  text-align: left; /* 英文使用左对齐 */
+  text-justify: none;
+}
+.markdown-body code,
+.markdown-body pre {
+  font-family: "Cascadia Code", "Consolas", "Courier New", monospace;
+  text-align: left;
+}
+.markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+.markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 10px;
+}
+.markdown-body p {
+  text-align: justify;
+  text-justify: inter-ideograph;
+  margin-bottom: 1.2em;
+}
+.markdown-body li {
+  text-align: justify;
+}
+.markdown-body strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  color: #ffffff;
+  border-bottom-color: #333333;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-family: "Constantia", "Cambria", "Georgia", "Microsoft YaHei UI", sans-serif;
+  font-weight: 700;
+  text-align: left; /* 标题左对齐 */
+}
+.markdown-body a {
+  color: #4dabf7;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(77, 171, 247, 0.3);
+  transition: border-color 0.2s;
+}
+.markdown-body a:hover {
+  border-bottom-color: rgba(77, 171, 247, 0.8);
+}
+.markdown-body hr {
+  background-color: #333333;
+  margin: 2em 0;
+}
+.markdown-body blockquote {
+  color: #b0b0b5;
+  border-left-color: #333333;
+  font-style: italic;
+  padding: 0.5em 1em;
+  text-align: justify;
+}
+.markdown-body code {
+  background-color: #252525;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background-color: #252525 !important;
+  border-radius: 5px;
+  padding: 1em !important;
+  margin-bottom: 1.5em !important;
+}
+table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}

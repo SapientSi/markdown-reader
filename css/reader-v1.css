@@ -29,12 +29,12 @@ body {
 .markdown-body {
   font-family: "Microsoft YaHei UI", "PingFang SC", "Hiragino Sans GB", sans-serif;
 }
-.markdown-body:lang(en), 
+.markdown-body:lang(en),
 .markdown-body *:lang(en) {
   font-family: "Palatino Linotype", "Book Antiqua", "Cambria", "Georgia", "Times New Roman", serif;
   font-weight: 500;
-  text-align: left; /* 英文使用左对齐 */
-  text-justify: none;
+  text-align: left !important; /* 强制英文左对齐 */
+  text-justify: none !important;
 }
 .markdown-body code,
 .markdown-body pre {
@@ -48,14 +48,27 @@ body {
   margin-bottom: 0 !important;
   padding-bottom: 10px;
 }
+
+/* 修改段落对齐设置 */
 .markdown-body p {
-  text-align: justify;
-  text-justify: inter-ideograph;
+  text-align: left; /* 默认左对齐 */
   margin-bottom: 1.2em;
 }
+/* 纯中文段落使用两端对齐 */
+.markdown-body p:not(:has(code)):not(:has(a)):not(:has(strong)):lang(zh-CN),
+.markdown-body p:not(:has(code)):not(:has(a)):not(:has(strong)):lang(zh) {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+/* 仅对纯中文列表项使用两端对齐 */
 .markdown-body li {
+  text-align: left;
+}
+.markdown-body li:lang(zh),
+.markdown-body li:lang(zh-CN) {
   text-align: justify;
 }
+
 .markdown-body strong {
   color: #ffffff;
   font-weight: 600;
@@ -92,7 +105,11 @@ body {
   border-left-color: #333333;
   font-style: italic;
   padding: 0.5em 1em;
-  text-align: justify;
+  text-align: left; /* 默认左对齐 */
+}
+.markdown-body blockquote:lang(zh),
+.markdown-body blockquote:lang(zh-CN) {
+  text-align: justify; /* 中文两端对齐 */
 }
 .markdown-body code {
   background-color: #252525;

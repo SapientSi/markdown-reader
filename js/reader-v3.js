@@ -53,15 +53,27 @@ function optimizeWindowSize() {
         
         if (positionMode === 'top') {
             // 顶部模式：窗口显示在顶部，底部留出35%空间
-            const maxWindowHeight = Math.floor(screenHeight * 0.65);
-            windowHeight = Math.min(windowHeight, maxWindowHeight);
+            const availableHeight = Math.floor(screenHeight * 0.65); // 可用高度（屏幕高度的65%）
+            windowHeight = Math.min(windowHeight, availableHeight);
             
             window.resizeTo(windowWidth, windowHeight);
             
-            // 调整窗口位置：水平居中，顶部留出一点空隙
+            // 调整窗口位置：水平居中
             const left = Math.floor((screenWidth - windowWidth) / 2);
-            const topMargin = 30; // 顶部留出的空隙，可以根据需要调整
-            const top = topMargin;
+            
+            // 如果窗口高度小于可用空间，则在可用空间内垂直居中
+            // 否则，从顶部开始显示（加一点小边距）
+            let top;
+            const minTopMargin = 20; // 最小顶部边距
+            
+            if (windowHeight < availableHeight) {
+                // 如果窗口比可用空间小，则在可用空间内垂直居中
+                top = Math.floor((availableHeight - windowHeight) / 2);
+                top = Math.max(top, minTopMargin); // 确保至少有最小边距
+            } else {
+                // 如果窗口足够大，占满或超过可用空间，则从顶部开始显示
+                top = minTopMargin;
+            }
             
             window.moveTo(left, top);
         } else {

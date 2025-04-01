@@ -53,7 +53,7 @@ function optimizeWindowSize() {
         
         if (positionMode === 'top') {
             // 顶部模式：窗口显示在顶部，底部留出35%空间
-            const availableHeight = Math.floor(screenHeight * 0.65); // 可用高度（屏幕高度的65%）
+            const availableHeight = Math.floor(screenHeight * 0.67); // 可用高度（屏幕高度的67%）
             windowHeight = Math.min(windowHeight, availableHeight);
             
             window.resizeTo(windowWidth, windowHeight);

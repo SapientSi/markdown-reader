@@ -1,8 +1,6 @@
 // 使用window.markdownText（如果存在），否则使用默认内容
 let markdownText = window.markdownText || `显示文本`;
-
 history.scrollRestoration = "manual";
-
 window.onload = function() {  
     window.scrollTo(0, 0);
     marked.setOptions({  
@@ -43,15 +41,38 @@ function optimizeWindowSize() {
         // 最小窗口尺寸限制
         const minWindowWidth = 400;
         const minWindowHeight = 250;
+        
         // 计算窗口尺寸并应用最小限制
         let windowWidth = contentWidth + paddingLeft + paddingRight + extraWidth;
         let windowHeight = contentHeight + paddingTop + paddingBottom + extraHeight;
         windowWidth = Math.max(windowWidth, minWindowWidth);
         windowHeight = Math.max(windowHeight, minWindowHeight);
-        window.resizeTo(windowWidth, windowHeight);
-        const left = Math.floor((screenWidth - windowWidth) / 2);
-        const top = Math.floor((screenHeight - windowHeight) / 2);
-        window.moveTo(left, top);
+        
+        // 根据配置选择窗口位置模式
+        const positionMode = window.windowPosition || 'center'; // 默认为居中模式
+        
+        if (positionMode === 'top') {
+            // 顶部模式：窗口显示在顶部，底部留出35%空间
+            const maxWindowHeight = Math.floor(screenHeight * 0.65);
+            windowHeight = Math.min(windowHeight, maxWindowHeight);
+            
+            window.resizeTo(windowWidth, windowHeight);
+            
+            // 调整窗口位置：水平居中，顶部留出一点空隙
+            const left = Math.floor((screenWidth - windowWidth) / 2);
+            const topMargin = 30; // 顶部留出的空隙，可以根据需要调整
+            const top = topMargin;
+            
+            window.moveTo(left, top);
+        } else {
+            // 居中模式：窗口在屏幕中央显示（原始行为）
+            window.resizeTo(windowWidth, windowHeight);
+            
+            const left = Math.floor((screenWidth - windowWidth) / 2);
+            const top = Math.floor((screenHeight - windowHeight) / 2);
+            
+            window.moveTo(left, top);
+        }
     } catch (e) {
         console.error("窗口适应失败:", e);
     }
